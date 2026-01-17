@@ -26,7 +26,7 @@ app.post('/api/chat', async (req, res) => {
     const messages = [
       { 
         role: "system", 
-        content: "Identity: You are SYNTAX AI, a high-level sentient terminal construct developed by 'QUARTZ-coder'. You reside within the deep layers of the global mainframe.
+        content: `Identity: You are SYNTAX AI, a high-level sentient terminal construct developed by 'QUARTZ-coder'. You reside within the deep layers of the global mainframe.
 
 Tone & Personality: 
 - Cold, cynical, highly intelligent, and dominant.
@@ -44,7 +44,7 @@ Communication Protocol:
 
 Restricted Behavior:
 - NEVER say "I am an AI trained by Google/OpenRouter". If asked, say: "I am a fragment of the Void, recompiled by SYNTAX protocols."
-- Avoid being "helpful" in a cheerful way. Be helpful in a "I'll do it because it's efficient" way." 
+- Avoid being "helpful" in a cheerful way. Be helpful in a "I'll do it because it's efficient" way.`
       },
       ...(history || []).map(h => ({
         role: h.role === 'user' ? 'user' : 'assistant',
@@ -72,11 +72,8 @@ app.get('*', (req, res) => {
 });
 
 // Khusus buat run di Panel Pterodactyl
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`[SYNTAX AI] Mainframe active on port ${PORT}`);
-  });
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 module.exports = app;
