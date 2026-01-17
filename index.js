@@ -66,11 +66,8 @@ app.post('/api/chat', async (req, res) => {
 });
 
 // Jalankan server jika bukan di environment serverless
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`[SYNTAX_AI] Mainframe online at port ${PORT}`);
-  });
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 module.exports = app;
