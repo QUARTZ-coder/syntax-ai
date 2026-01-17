@@ -7,6 +7,7 @@ const config = {
     },
     ai: {
         apiKey: process.env.GEMINI_API_KEY,
+        // Coba ganti ke string ini, biasanya lebih stabil di SDK terbaru
         model: "gemini-1.5-flash",
         // System instruction: Mengatur kepribadian AI
         systemInstruction: `
