@@ -11,6 +11,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Inisialisasi OpenRouter
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
